@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation Example</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h2>Contact Form</h2>
+  <form id="contactForm">
+    <!-- Name -->
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <span id="nameError" class="error"></span>
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+      <span id="emailError" class="error"></span>
+    </div>
+
+    <!-- Website -->
+    <div>
+      <label for="website">Website:</label>
+      <input type="text" id="website" name="website">
+      <span id="websiteError" class="error"></span>
+    </div>
+
+    <!-- Message -->
+    <div>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message"></textarea>
+      <span id="messageError" class="error"></span>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();  // Prevent the default form submission
+
+      // Clear previous error messages
+      clearErrors();
+
+      // Validation logic
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const website = document.getElementById('website').value;
+      const message = document.getElementById('message').value;
+
+      let isValid = true;
+
+      // Check if name is filled out
+      if (!name) {
+        document.getElementById('nameError').innerText = 'Name is required';
+        isValid = false;
+      }
+
+      // Check if email looks like an email address
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById('emailError').innerText = 'Invalid email address';
+        isValid = false;
+      }
+
+      // Check if website looks like a URL
+      const websitePattern = /^(https?:\/\/)?[^\s/$.?#].[^\s]*$/i;
+      if (!websitePattern.test(website)) {
+        document.getElementById('websiteError').innerText = 'Invalid website URL';
+        isValid = false;
+      }
+
+      // Check if message is filled out
+      if (!message) {
+        document.getElementById('messageError').innerText = 'Message is required';
+        isValid = false;
+      }
+
+      // Highlight message field in red if it's empty
+      if (!message) {
+        document.getElementById('message').style.borderColor = 'red';
+      }
+
+      return isValid;
+    }
+
+    // Function to clear error messages
+    function clearErrors() {
+      const errorElements = document.querySelectorAll('.error');
+      for (const errorElement of errorElements) {
+        errorElement.innerText = '';
+      }
+
+      // Clear red border on message field
+      document.getElementById('message').style.borderColor = '';
+    }
+
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(event) {
+      if (!validateForm(event)) {
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+
+</html>
+
+
+<html>
+<head>
+  <title>Date and Time Display</title>
+</head>
+<body>
+  <h1> JS TASK 4</h1>
+  <h2>Date and Time Display</h2>
+  
+  <button onclick="showCurrentDate()">Show Date</button> 
+  <p id="display"></p>
+  <br> <br>
+  <button onclick="showCurrentTime()">Show Time</button> 
+  <p id="display1"></p>
+  <br> <br>
+  
+  <script>
+    function showCurrentDate() {
+    const now = new Date();
+
+    // Format the date (e.g., "Monday, September 27, 2023")
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = now.toLocaleDateString(undefined, options);
+
+    // Display the formatted date
+    document.getElementById('display').innerText = `Current Date: ${formattedDate}`;
+}
+
+function showCurrentTime() {
+    const now = new Date();
+
+    // Format the time (e.g., "12:34:56 PM")
+    const formattedTime = now.toLocaleTimeString();
+
+    // Display the formatted time
+    document.getElementById('display1').innerText = `Current Time: ${formattedTime}`;
+}
+
+  </script>
+</body>
+</html>

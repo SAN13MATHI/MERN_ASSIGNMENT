@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Bootstrap Form Example</title>
+  <style>
+    /* Custom styling for error messages */
+    .error-text {
+      color: rgb(221, 21, 81);
+      font-size: 0.9em;
+    }
+
+    /* Custom styling to highlight label in the same color as the button */
+    .error-label {
+      color: rgb(0, 0, 0); /* Adjust the color as needed */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <form>
+        <div class="form-group">
+          <label for="name" id="name-label">Name</label>
+          <input type="text" class="form-control" id="name" placeholder="">
+          <div id="name-error" class="error-text"></div>
+        </div>
+        <div class="form-group">
+          <label for="email" id="email-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="">
+          <div id="email-error" class="error-text"></div>
+        </div>
+        <div class="form-group">
+          <label for="password" id="password-label">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="">
+          <div id="password-error" class="error-text"></div>
+        </div>
+        <div class="form-group">
+          <label for="hobbies" id="hobbies-label">Hobbies</label>
+          <textarea class="form-control scrollable-textarea" id="hobbies" placeholder=""></textarea>
+          <div id="hobbies-error" class="error-text"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Validation logic can be added here based on your requirements
+  // For simplicity, we are displaying error messages for each field
+
+  document.querySelector('form').addEventListener('submit', function(event) {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    if (name === '') {
+      document.getElementById('name-error').innerText = 'Name is required';
+      document.getElementById('name-label').classList.add('error-label');
+      event.preventDefault();
+    } else {
+      document.getElementById('name-error').innerText = '';
+      document.getElementById('name-label').classList.remove('error-label');
+    }
+
+    if (email === '') {
+      document.getElementById('email-error').innerText = 'Email is required';
+      document.getElementById('email-label').classList.add('error-label');
+      event.preventDefault();
+    } else {
+      document.getElementById('email-error').innerText = '';
+      document.getElementById('email-label').classList.remove('error-label');
+    }
+
+    if (password === '') {
+      document.getElementById('password-error').innerText = 'Password is required';
+      document.getElementById('password-label').classList.add('error-label');
+      event.preventDefault();
+    } else {
+      document.getElementById('password-error').innerText = '';
+      document.getElementById('password-label').classList.remove('error-label');
+    }
+ 
+  });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
